@@ -224,8 +224,14 @@ def prim(graph: Graph) -> list[Edge]:
 
     # FIXME: Algorithm needed here!
     ...
+    while heap:
+        edge = heap.pop()
+        if not tree or edge[0] is not None:
+            tree.append(edge)
+            for new in  graph.edges[edge[2]]:
+                heap.decrease_weight(*reversed(new))
+    return tree[1:]
 
-    return tree
 
 
 if __name__ == '__main__':
